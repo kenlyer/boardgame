@@ -1,1 +1,299 @@
+body{
+    width: 100%;
+    height: 1000px;
+    margin: 0;
+    background-image: linear-gradient(180deg,rgb(4, 10, 30),rgb(28, 38, 56));
+    font-weight: bold;
 
+}
+
+.container-head {
+    top:0;
+    position: sticky;
+    position: -webkit-sticky;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:center;
+    align-content:space-around;
+    background-color:rgb(2, 7, 28) ;
+    z-index: 1000;
+    
+    
+}
+
+.container-head > div {
+    height: 50px;
+   
+   
+   
+}
+
+.container-head > .ch-left{
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:lefts;
+    align-content:space-around;
+    
+}
+
+.container-head > .ch-right{
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:right;
+    align-content:center;
+}
+
+/*chinh sua trong ch-left*/
+.ch-left > div {
+  
+}
+
+.container-logo{
+    width: 100px;
+    border-right: ridge 1px white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-logo > img {
+    width: 80%; /* Để hình ảnh khớp với chiều rộng của div */
+    height: 100%; /* Để hình ảnh khớp với chiều cao của div */
+    object-fit: contain; /* Để hình ảnh không bị méo khi khớp với div */
+}
+
+.container-menu {
+    height: 100%;
+    flex:1;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:left;
+    align-content:center;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    font-size:15px;
+    color:white;
+}
+
+.container-menu > div {
+    margin: 10px;
+}
+
+
+
+/*chinh sau trong ch-right*/
+.container-account-login{
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    font-size:12px;
+    color: white;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:center;
+    align-content:center;
+
+}
+.container-account-resign{
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    font-size:12px;
+    color: white;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:center;
+    align-content:center;
+
+}
+.container-search{
+    width: 50%;
+    margin-right: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:center;
+    align-content: center;
+    
+}
+.searching{
+    height: 50%;
+    width: 100%;
+    background-color: gray;
+    color: white;
+}
+.searching::placeholder{
+    color: white;
+}
+
+.searching-icon{
+    border: solid;
+    text-align: center;
+}
+.searching-delete{
+    border: solid;
+    text-align: center;
+}
+/*hover*/
+.container-menu > div:hover{
+    color:  #4cccff;
+   
+}
+.container-account-login:hover{
+    color:  #4cccff;
+    
+}
+.container-account-resign:hover{
+    color:  #4cccff;
+  
+}
+
+/*active*/
+
+
+
+
+/*phan san pham*/
+/*phan san pham - body*/
+.container-body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 1;
+    color: white;
+}
+.container-body > div{
+    height: auto;
+    width: 50px;
+    margin: 20px;
+}
+
+
+/*bo loc tim kiem*/
+.container-body-sort{
+    border: none;
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content:center;
+    border:inset 1px rgba(255, 255, 255, 0.776);
+    background-color: rgb(2, 7, 28);
+   
+}
+.container-body-sort > div {
+    width: 100% ;
+   
+    
+}
+
+.container-body-product{
+  
+    background-color: rgb(2, 7, 28);    
+    flex: 4;
+}
+/*cbs player*/
+.cbs-player >div> input{
+    width: 60px;
+    height: 20px;
+}
+.cbsp-ip{
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content:center;
+}
+.cbsp-ip>input{
+    margin-left: 20px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+/*cbs time*/
+.cbst-ip > input {
+    margin-left: 20px ;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.cbst-ip{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content:center;
+}
+
+/*cbs age*/
+.cbsa-ip > input {
+    margin-left: 20px ;
+    overflow: hidden;
+    accent-color: rgb(207, 55, 126);
+    margin-right: 20px;
+}
+.cbsa-ip{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content:center;
+}
+
+/*cbs weight*/
+.cbsw-ip > input {
+    margin-left: 20px ;
+    overflow: hidden;
+    accent-color: rgb(59, 176, 192);
+    margin-right: 20px;
+}
+.cbsw-ip{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content:center;
+}
+
+/*cbst-ip*/
+.cbstype-ip{
+    font-size: 12px;
+    margin-left: 20px;
+    white-space: wrap;
+   
+    word-wrap: break-word;
+}
+
+
+/*cbs-search*/
+.cbs-search{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.cbs-search > button {
+    margin: 10px;
+}
