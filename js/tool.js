@@ -174,7 +174,7 @@ const cta_ip = cta.querySelectorAll('input');
 const nresetButton = document.getElementById('reset_filter');
 
 
-
+/*RESET FILTER*/
 nresetButton.addEventListener("click",()=>{
     nplayer.value = "";
     nTime.value = 120;
@@ -184,57 +184,84 @@ nresetButton.addEventListener("click",()=>{
         element.checked = false;
     });
     nfilter_search();
-
-
 })
+/**/
 
+//////////////////*FILTER FUNCTION*////////////////
+/*PLAEYER FUNCTION*/
+function Player_setting(){
 
-
-
-cta_ip.forEach(element => {
-    element.addEventListener('change',()=>{
-        nfilter_search();
-    })
-});
-nweight.addEventListener('change',()=>{
-    nfilter_search();
-})
-nAge.addEventListener('change',()=>{
-     nfilter_search()
-})
-nTime.addEventListener('change',()=>{
+    if(nplayer.value < 0 || nplayer.value > 20){
+        nplayer.value = "";
+        alert("Number player must > 0 and < 20");
+    }
+    else {
+        //console.log(nplayer.value)
+        nfilter_search()
+        //nplayer_change(nplayer.value)
+    }
+}
+/*TIME FUNCTION*/
+function Time_setting(){
     nfilter_search()
-})
-nplayer.addEventListener('change',()=>{
-        if(nplayer.value < 0 || nplayer.value > 20){
-            nplayer.value = "";
-            alert("Number player must > 0 and < 20");
-        }
-        else {
-            //console.log(nplayer.value)
-            nfilter_search()
-            //nplayer_change(nplayer.value)
-        }
-})
+}
+/*AGE FUNCTION*/
+function Age_setting(){
+    nfilter_search()
+}
+/*WEIGHT FUNCTION*/
+function Weight_setting(){
+    nfilter_search()
+}
+/*TYPE FUNCTION*/
+function Type_setting(){
+    nfilter_search()
+}
 
-function nplayer_change(item , Ntime , Nage , Nweight , Ntypes){
-    
-    
+////////////////*VAN DUNG FUNCTION*/////////////////
+/*PLAEYER FUNCTION*/
+nplayer.addEventListener('change',Player_setting);
+/*TIME FUNCTION*/
+nTime.addEventListener('change',Time_setting);
+/*AGE FUNCTION*/
+nAge.addEventListener('change',Age_setting)
+/*WEIGHT FUNCTION*/
+nweight.addEventListener('change',Weight_setting)
+cta_ip.forEach(element => {
+    element.addEventListener('change',Type_setting)
+});
+
+
+
+
+
+
+
+//////////////////*FUNCTION FILTER*//////////////////
+function filter_change(item , Ntime , Nage , Nweight , Ntypes){
     var sort = [];
     var div  =  document.getElementById('cbp-body') ;
-        while(div.firstChild){
-            div.removeChild(div.firstChild);
-        }
-    ArraySort.forEach(datas=>{
-        if(datas.playermax >= item ){
-            if(datas.times <= Ntime ){
-                console.log(Ntime);
-                if(Nage >= datas.ages ){
-                    if(datas.weight >= Nweight){
+    while(div.firstChild){div.removeChild(div.firstChild);} // clear 
 
+    //switch_player 
+    const switch_player = document.getElementById("filter-cbs-player");
+    //switch_time 
+    const switch_time = document.getElementById("filter-cbs-time");
+    //switch_age
+    const switch_age = document.getElementById("filter-cbs-age");
+    //switch_weight
+    const switch_weight = document.getElementById("filter-cbs-weight");
+    //switch_type
+    const switch_type = document.getElementById("filter-cbs-type");
+
+    ArraySort.forEach(datas=>{
+        if(datas.playermax >= item || switch_player.checked == true  ){
+            if(datas.times <= Ntime || switch_time.checked == true ){
+                console.log(Ntime);
+                if(Nage >= datas.ages || switch_age.checked == true ){
+                    if(datas.weight >= Nweight || switch_weight.checked == true ){
                         //sort.push(a)  
                         var types = Object.entries(datas.types);
-
                         var cateTypes = types.map(function(subArray){
                             return subArray[0];
                         })
@@ -246,9 +273,7 @@ function nplayer_change(item , Ntime , Nage , Nweight , Ntypes){
                         var stringHTML = typeHTML.join("");
                         var typess = stringHTML ; 
 
-
-
-                        if(Ntypes == ""){
+                        if(Ntypes == "" || switch_type.checked == true ){
                             outitem.innerHTML += '<div class="item" id="item1"> <div class="item-head"> <div class="item-head-image"> <img src="images/'+datas.img+'.jpg" alt="'+datas.img+'"> </div> <div class="item-head-filter"> <div class="numberplayer"> <p title="'+datas.playermin+' - '+datas.playermax+'" ><i class="fas fa-users"></i> '+datas.playermin+' - '+datas.playermax+'</p> </div> <div class="timeplay"> <p title="'+datas.times+'m" ><i class="fas fa-stopwatch"></i> '+datas.times+'m</p> </div> <div class="ageplay"> <p title="'+datas.ages+'+" ><i class="fas fa-users-cog"></i> '+datas.ages+'+</p> </div> <div class="weightplay"> <p title="'+datas.weight+'/5" ><i class="fas fa-weight"></i> '+datas.weight+'/5</p> </div> </div> <div class="item-head-type"> <div>'+ typess+'</div> </div> </div> <div class="item-bottom"> <p title="'+datas.des+'">'+datas.des+'</p></div> </div>'
 
                         }
@@ -256,31 +281,21 @@ function nplayer_change(item , Ntime , Nage , Nweight , Ntypes){
                             var checktype = Ntypes.some(function(item){
                                 return cateTypes.includes(item);
                             })
-                            if(checktype){
+                            if(checktype || switch_type.checked == true ){
                                 outitem.innerHTML += '<div class="item" id="item1"> <div class="item-head"> <div class="item-head-image"> <img src="images/'+datas.img+'.jpg" alt="'+datas.img+'"> </div> <div class="item-head-filter"> <div class="numberplayer"> <p title="'+datas.playermin+' - '+datas.playermax+'" ><i class="fas fa-users"></i> '+datas.playermin+' - '+datas.playermax+'</p> </div> <div class="timeplay"> <p title="'+datas.times+'m" ><i class="fas fa-stopwatch"></i> '+datas.times+'m</p> </div> <div class="ageplay"> <p title="'+datas.ages+'+" ><i class="fas fa-users-cog"></i> '+datas.ages+'+</p> </div> <div class="weightplay"> <p title="'+datas.weight+'/5" ><i class="fas fa-weight"></i> '+datas.weight+'/5</p> </div> </div> <div class="item-head-type"> <div>'+ typess+'</div> </div> </div> <div class="item-bottom"> <p title="'+datas.des+'">'+datas.des+'</p></div> </div>'
                         
                             }
                         }
-                        
-                        
 
-                      
-                        
-                    }
-          
+                    }          
                 }
-     
             }
-         
         }
         else{
-            
         }
     })
 }
-
-
-////////*Filter Seacrch*////////
+/////////////////*TRUYEN THAM SO VAO FUNCTION FILTER CHANGE*////////
 function nfilter_search(){
     var intNumPlayer = document.getElementById("nplayer");
     if(intNumPlayer == "" ){
@@ -305,8 +320,120 @@ function nfilter_search(){
         }
     })
     //console.log(listCategory);/**/
-    
     //
-    nplayer_change(intNumPlayer.value , intTime.value , intAge.value , intWeight.value , listCategory );
+    filter_change(intNumPlayer.value , intTime.value , intAge.value , intWeight.value , listCategory );
 }
+
+
+
+/*SWITCH-ALL thay doi switch khi an , thay doi cach filter*/
+//Player 
+const switch_player = document.getElementById("filter-cbs-player");
+switch_player.addEventListener("click",()=>{
+    const regime = document.getElementById("switch-cbs-player");
+    if(switch_player.checked == true ){
+        regime.innerHTML = "ON";
+        nfilter_search();
+        nplayer.removeEventListener('change',Player_setting);//loai bo
+        nplayer.readOnly = true ;
+        document.getElementById("opeticy-cbs-player").style.display = "block";
+        
+    }
+    else{
+        regime.innerHTML = "OFF";
+        nplayer.addEventListener('change',Player_setting);//them lai
+        document.getElementById("nplayer").value = "";
+        nplayer.readOnly = false ;
+        document.getElementById("opeticy-cbs-player").style.display = "none";
+        nfilter_search();
+    }
+})
+
+//TIME 
+const switch_times = document.getElementById("filter-cbs-time");
+switch_times.addEventListener("click",()=>{
+    const regime = document.getElementById("switch-cbs-time");
+    if(switch_times.checked == true){
+        regime.innerHTML = "ON";
+        nfilter_search();
+        nTime.removeEventListener('change',Time_setting);
+        nTime.disabled  = true; 
+        document.getElementById("opeticy-cbs-time").style.display = "block";
+    }
+    else{
+        regime.innerHTML = "OFF";
+        nTime.addEventListener('change',Time_setting);
+        nTime.disabled  = false; 
+        document.getElementById("opeticy-cbs-time").style.display = "none";
+        nfilter_search();
+    }
+})
+
+//AGE 
+const switch_age = document.getElementById("filter-cbs-age");
+switch_age.addEventListener("click",()=>{
+    const regime = document.getElementById("switch-cbs-age");
+    if(switch_age.checked == true){
+        regime.innerHTML = "ON";
+        nfilter_search();
+        nAge.removeEventListener('change',Age_setting);
+        nAge.disabled=true;
+        document.getElementById("opeticy-cbs-age").style.display = "block";
+    }
+    else{
+        regime.innerHTML = "OFF";
+        nAge.addEventListener('change',Age_setting);
+        nAge.disabled=false;
+        document.getElementById("opeticy-cbs-age").style.display = "none";
+        nfilter_search();
+    }
+})
+//Weight 
+const switch_weight = document.getElementById("filter-cbs-weight");
+switch_weight.addEventListener("click",()=>{
+    const regime = document.getElementById("switch-cbs-weight");
+    if(switch_weight.checked == true){
+        regime.innerHTML = "ON";
+        nfilter_search();
+        nweight.removeEventListener('change',Weight_setting);
+        nweight.disabled=true;
+        document.getElementById("opeticy-cbs-weight").style.display = "block";
+    }
+    else{
+        regime.innerHTML = "OFF";
+        nweight.addEventListener('change',Weight_setting);
+        nweight.disabled=false;
+        document.getElementById("opeticy-cbs-weight").style.display = "none";
+        nfilter_search();
+    }
+})
+
+//categpry
+const switch_type = document.getElementById("filter-cbs-type");
+switch_type.addEventListener("click",()=>{
+    const regime = document.getElementById("switch-cbs-type");
+    if(switch_type.checked == true){
+        regime.innerHTML = "ON";
+        nfilter_search();
+        cta_ip.forEach(element => {
+        element.removeEventListener('change',Type_setting)
+        });
+        cta_ip.forEach(element => {
+            element.disabled = true 
+        });
+        document.getElementById("opeticy-cbs-type").style.display = "block";
+    }
+    else{
+        regime.innerHTML = "OFF";
+        cta_ip.forEach(element => {
+            element.addEventListener('change',Type_setting)
+        });
+        cta_ip.forEach(element => {
+            element.disabled = false 
+        });
+        document.getElementById("opeticy-cbs-type").style.display = "none";
+        nfilter_search();
+    }
+})
+
 
