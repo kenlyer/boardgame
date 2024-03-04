@@ -51,41 +51,74 @@
                 </div>
                 <div class="cbs-player">
                     <h5 style="margin-left: 20px;">Number players : (Up) Limit 20 </h5>
+                    <label class="filter-switch">
+                        <input type="checkbox" id="filter-cbs-player">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="check-switch" id="switch-cbs-player" >OFF</span>
                     <div class="cbsp-ip">
                         <input type="number" min="1" max="20" placeholder="From" id="nplayer" inputmode="numeric">
                     </div>
+                    <div class="opeticy-cbs" id="opeticy-cbs-player"></div>
                     <br>
                     <hr style="width: 80%;border-style: inset;border-width: 1px;">
                 </div>
                 <div class="cbs-time">
                     <h5 style="margin-left: 20px;">Playing time (Below)</h5>
+                    <label class="filter-switch">
+                        <input type="checkbox" id="filter-cbs-time">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="check-switch" id="switch-cbs-time">OFF</span>
                     <div class="cbst-ip">
                         <input type="range" min="10" max="200" value="120" step="5" id="ntime"  oninput="updateValue(this.value)">
                         <output id="output">120 Min</output>
                     </div>
+                    <div class="opeticy-cbs" id="opeticy-cbs-time"></div>
+
                     <br>
                     <hr style="width: 80%;border-style: inset;border-width: 1px;">
                 </div>
                 <div class="cbs-age">
                     <h5 style="margin-left: 20px;">Age (Below)</h5>
+                    <label class="filter-switch">
+                        <input type="checkbox" id="filter-cbs-age">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="check-switch" id="switch-cbs-age" >OFF</span>
                     <div class="cbsa-ip">
                         <input type="range" min="4" max="20" value="14" step="1" id="nage"  oninput="updateValue2(this.value)">
                         <output id="output2">14</output>
                     </div>
+                    <div class="opeticy-cbs" id="opeticy-cbs-age"></div>
+                    
                     <br>
                     <hr style="width: 80%;border-style: inset;border-width: 1px;">
                 </div>
                 <div class="cbs-weight">
                     <h5 style="margin-left: 20px;">Weight (Up)</h5>
+                    <label class="filter-switch">
+                        <input type="checkbox" id="filter-cbs-weight">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="check-switch" id="switch-cbs-weight" >OFF</span>
                     <div class="cbsw-ip">
                         <input type="range" min="0.01" max="5" value="0.01" step="0.01" id="nweight" oninput="updateValue3(this.value)">
                         <output id="output3">0.01</output>
                     </div>
+                    <div class="opeticy-cbs" id="opeticy-cbs-weight"></div>
+                    
                     <br>
                     <hr style="width: 80%;border-style: inset;border-width: 1px;">
                 </div>
                 <div class="cbs-type">
                     <h5 style="margin-left: 20px;">Category</h5>
+                    <label class="filter-switch">
+                        <input type="checkbox" id="filter-cbs-type">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="check-switch" id="switch-cbs-type" >OFF</span>
+                    <div class="opeticy-cbs" id="opeticy-cbs-type"></div>
                     <form class="cbstype-ip" id="ncategory">
                         <input type="checkbox" name="typer1" value="Abstract Strategy">
                         <label for="typer1">Abstract Strategy</label><br>
