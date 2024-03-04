@@ -1,8 +1,9 @@
 body{
     width: 100%;
-    height: 1000px;
+    height: auto;
     margin: 0;
     background-image: linear-gradient(180deg,rgb(4, 10, 30),rgb(28, 38, 56));
+    background-repeat:no-repeat ;
     font-weight: bold;
 
 }
@@ -197,7 +198,7 @@ body{
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content:center;
-    border:inset 1px rgba(255, 255, 255, 0.776);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     background-color: rgb(2, 7, 28);
    
 }
@@ -213,12 +214,16 @@ body{
     flex: 4;
 }
 /*cbs player*/
+.cbs-player { 
+   position: relative;
+   z-index: 1;
+}
 .cbs-player >div> input{
     width: 60px;
     height: 20px;
+    
 }
 .cbsp-ip{
-    
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -230,8 +235,25 @@ body{
     overflow: hidden;
     margin-right: 20px;
 }
+.opeticy-cbs{
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 95%;
+    background-color: grey;
+    opacity: 0.4;
+    pointer-events: none; 
+}
+
+
+
 
 /*cbs time*/
+.cbs-time{
+    position: relative;
+    z-index: 1;
+}
 .cbst-ip > input {
     margin-left: 20px ;
     overflow: hidden;
@@ -246,6 +268,10 @@ body{
 }
 
 /*cbs age*/
+.cbs-age{
+    position: relative;
+    z-index: 1;
+}
 .cbsa-ip > input {
     margin-left: 20px ;
     overflow: hidden;
@@ -261,6 +287,10 @@ body{
 }
 
 /*cbs weight*/
+.cbs-weight{
+    position: relative;
+    z-index: 1;
+}
 .cbsw-ip > input {
     margin-left: 20px ;
     overflow: hidden;
@@ -274,6 +304,13 @@ body{
     justify-content: flex-start;
     align-content:center;
 }
+
+.cbs-type{
+    position: relative;
+    z-index: 1;
+}
+
+
 
 /*cbst-ip*/
 .cbstype-ip{
@@ -297,3 +334,72 @@ body{
 .cbs-search > button {
     margin: 10px;
 }
+
+
+
+
+/**/
+ .filter-switch {
+    border: solid;
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 20px;
+    margin: 0px 20px 5px 20px;
+    
+  }
+  
+  .filter-switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .filter-switch > input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  .filter-switch > input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  .filter-switch > input:checked + .slider:before {
+    -webkit-transform: translateX(15px);
+    -ms-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+
+
+  .check-switch { 
+    font-size: 12px;
+    display: inline-block;
+    top:0;
+    left:0;
+    color:white;
+    transform: translate(20%,15%);
+    margin-bottom: 15px;
+  }
