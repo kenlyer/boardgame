@@ -7,6 +7,8 @@ a.addEventListener("click",()=>{
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 import { getDatabase, ref, push, set, onValue, remove, off } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js"
+
+import {loadPage , ResetNumber} from './PageNumber.js'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -118,6 +120,9 @@ var datas ;
 var typess ;
 var ArrayGame = [];//danh sach game tat ca 
 var ArraySort = [];
+
+var ArrayCache = []; //danh sach game cache list 
+var ArrayTypes = [];
 onValue(reference,(snapshot)=>{
     data = snapshot.val();
     if (data != null) {
@@ -148,8 +153,12 @@ onValue(reference,(snapshot)=>{
             typess = stringHTML ; 
             //console.log(stringHTML);
             //console.log(types[0][0]);    
-            
-            outitem.innerHTML += '<div class="item" id="item1"> <div class="item-head"> <div class="item-head-image"> <img src="images/'+datas.img+'.jpg" alt="'+datas.img+'"> </div> <div class="item-head-filter"> <div class="numberplayer"> <p title="'+datas.playermin+' - '+datas.playermax+'" ><i class="fas fa-users"></i> '+datas.playermin+' - '+datas.playermax+'</p> </div> <div class="timeplay"> <p title="'+datas.times+'m" ><i class="fas fa-stopwatch"></i> '+datas.times+'m</p> </div> <div class="ageplay"> <p title="'+datas.ages+'+" ><i class="fas fa-users-cog"></i> '+datas.ages+'+</p> </div> <div class="weightplay"> <p title="'+datas.weight+'/5" ><i class="fas fa-weight"></i> '+datas.weight+'/5</p> </div> </div> <div class="item-head-type"> <div>'+ typess+'</div> </div> </div> <div class="item-bottom"> <p title="'+datas.des+'">'+datas.des+'</p></div> </div>'
+          
+            ArrayTypes.push(typess);
+
+
+
+            //outitem.innerHTML += '<div class="item" id="item1"> <div class="item-head"> <div class="item-head-image"> <img src="images/'+datas.img+'.jpg" alt="'+datas.img+'"> </div> <div class="item-head-filter"> <div class="numberplayer"> <p title="'+datas.playermin+' - '+datas.playermax+'" ><i class="fas fa-users"></i> '+datas.playermin+' - '+datas.playermax+'</p> </div> <div class="timeplay"> <p title="'+datas.times+'m" ><i class="fas fa-stopwatch"></i> '+datas.times+'m</p> </div> <div class="ageplay"> <p title="'+datas.ages+'+" ><i class="fas fa-users-cog"></i> '+datas.ages+'+</p> </div> <div class="weightplay"> <p title="'+datas.weight+'/5" ><i class="fas fa-weight"></i> '+datas.weight+'/5</p> </div> </div> <div class="item-head-type"> <div>'+ typess+'</div> </div> </div> <div class="item-bottom"> <p title="'+datas.des+'">'+datas.des+'</p></div> </div>'
             
         });//object
        
@@ -159,7 +168,17 @@ onValue(reference,(snapshot)=>{
     else{
         console.log("ko co du lieu")
     }
+    loadPage(ArrayCache,ArrayTypes);
 })
+
+
+
+ArrayCache = ArrayGame;//gan gia tri ban dau 
+console.log(ArrayCache);//check
+console.log(ArrayTypes);//chec
+
+
+
 /////////////////auto take data//////////////////
 /////////////////Filter//////////////////////////
 /////////////////ALL Filter///////////////////
@@ -220,7 +239,7 @@ function Type_setting(){
 
 ////////////////*VAN DUNG FUNCTION*/////////////////
 /*PLAEYER FUNCTION*/
-nplayer.addEventListener('change',Player_setting);
+nplayer.addEventListener('change',Player_setting );
 /*TIME FUNCTION*/
 nTime.addEventListener('change',Time_setting);
 /*AGE FUNCTION*/
@@ -239,10 +258,12 @@ cta_ip.forEach(element => {
 
 //////////////////*FUNCTION FILTER*//////////////////
 function filter_change(item , Ntime , Nage , Nweight , Ntypes){
-    var sort = [];
+    
+    ArrayCache = [];
+    ArrayTypes = [];
+    
     var div  =  document.getElementById('cbp-body') ;
     while(div.firstChild){div.removeChild(div.firstChild);} // clear 
-
     //switch_player 
     const switch_player = document.getElementById("filter-cbs-player");
     //switch_time 
@@ -257,7 +278,7 @@ function filter_change(item , Ntime , Nage , Nweight , Ntypes){
     ArraySort.forEach(datas=>{
         if(datas.playermax >= item || switch_player.checked == true  ){
             if(datas.times <= Ntime || switch_time.checked == true ){
-                console.log(Ntime);
+                //console.log(Ntime);
                 if(Nage >= datas.ages || switch_age.checked == true ){
                     if(datas.weight >= Nweight || switch_weight.checked == true ){
                         //sort.push(a)  
@@ -265,7 +286,7 @@ function filter_change(item , Ntime , Nage , Nweight , Ntypes){
                         var cateTypes = types.map(function(subArray){
                             return subArray[0];
                         })
-                        //console.log(cateTypes);
+                        console.log(cateTypes);
                         var typeHTML =  types.map(function(type) {
                         //console.log(type[0]);
                         return '<p>' + type[0] + '</p> ';
@@ -274,15 +295,21 @@ function filter_change(item , Ntime , Nage , Nweight , Ntypes){
                         var typess = stringHTML ; 
 
                         if(Ntypes == "" || switch_type.checked == true ){
-                            outitem.innerHTML += '<div class="item" id="item1"> <div class="item-head"> <div class="item-head-image"> <img src="images/'+datas.img+'.jpg" alt="'+datas.img+'"> </div> <div class="item-head-filter"> <div class="numberplayer"> <p title="'+datas.playermin+' - '+datas.playermax+'" ><i class="fas fa-users"></i> '+datas.playermin+' - '+datas.playermax+'</p> </div> <div class="timeplay"> <p title="'+datas.times+'m" ><i class="fas fa-stopwatch"></i> '+datas.times+'m</p> </div> <div class="ageplay"> <p title="'+datas.ages+'+" ><i class="fas fa-users-cog"></i> '+datas.ages+'+</p> </div> <div class="weightplay"> <p title="'+datas.weight+'/5" ><i class="fas fa-weight"></i> '+datas.weight+'/5</p> </div> </div> <div class="item-head-type"> <div>'+ typess+'</div> </div> </div> <div class="item-bottom"> <p title="'+datas.des+'">'+datas.des+'</p></div> </div>'
 
+                            ArrayCache.push(datas);
+                            ArrayTypes.push(typess);
+                            //outitem.innerHTML += '<div class="item" id="item1"> <div class="item-head"> <div class="item-head-image"> <img src="images/'+datas.img+'.jpg" alt="'+datas.img+'"> </div> <div class="item-head-filter"> <div class="numberplayer"> <p title="'+datas.playermin+' - '+datas.playermax+'" ><i class="fas fa-users"></i> '+datas.playermin+' - '+datas.playermax+'</p> </div> <div class="timeplay"> <p title="'+datas.times+'m" ><i class="fas fa-stopwatch"></i> '+datas.times+'m</p> </div> <div class="ageplay"> <p title="'+datas.ages+'+" ><i class="fas fa-users-cog"></i> '+datas.ages+'+</p> </div> <div class="weightplay"> <p title="'+datas.weight+'/5" ><i class="fas fa-weight"></i> '+datas.weight+'/5</p> </div> </div> <div class="item-head-type"> <div>'+ typess+'</div> </div> </div> <div class="item-bottom"> <p title="'+datas.des+'">'+datas.des+'</p></div> </div>'
+                            
                         }
                         else{
                             var checktype = Ntypes.some(function(item){
                                 return cateTypes.includes(item);
                             })
                             if(checktype || switch_type.checked == true ){
-                                outitem.innerHTML += '<div class="item" id="item1"> <div class="item-head"> <div class="item-head-image"> <img src="images/'+datas.img+'.jpg" alt="'+datas.img+'"> </div> <div class="item-head-filter"> <div class="numberplayer"> <p title="'+datas.playermin+' - '+datas.playermax+'" ><i class="fas fa-users"></i> '+datas.playermin+' - '+datas.playermax+'</p> </div> <div class="timeplay"> <p title="'+datas.times+'m" ><i class="fas fa-stopwatch"></i> '+datas.times+'m</p> </div> <div class="ageplay"> <p title="'+datas.ages+'+" ><i class="fas fa-users-cog"></i> '+datas.ages+'+</p> </div> <div class="weightplay"> <p title="'+datas.weight+'/5" ><i class="fas fa-weight"></i> '+datas.weight+'/5</p> </div> </div> <div class="item-head-type"> <div>'+ typess+'</div> </div> </div> <div class="item-bottom"> <p title="'+datas.des+'">'+datas.des+'</p></div> </div>'
+
+                                ArrayCache.push(datas);
+                                ArrayTypes.push(typess);
+                               //outitem.innerHTML += '<div class="item" id="item1"> <div class="item-head"> <div class="item-head-image"> <img src="images/'+datas.img+'.jpg" alt="'+datas.img+'"> </div> <div class="item-head-filter"> <div class="numberplayer"> <p title="'+datas.playermin+' - '+datas.playermax+'" ><i class="fas fa-users"></i> '+datas.playermin+' - '+datas.playermax+'</p> </div> <div class="timeplay"> <p title="'+datas.times+'m" ><i class="fas fa-stopwatch"></i> '+datas.times+'m</p> </div> <div class="ageplay"> <p title="'+datas.ages+'+" ><i class="fas fa-users-cog"></i> '+datas.ages+'+</p> </div> <div class="weightplay"> <p title="'+datas.weight+'/5" ><i class="fas fa-weight"></i> '+datas.weight+'/5</p> </div> </div> <div class="item-head-type"> <div>'+ typess+'</div> </div> </div> <div class="item-bottom"> <p title="'+datas.des+'">'+datas.des+'</p></div> </div>'
                         
                             }
                         }
@@ -292,8 +319,20 @@ function filter_change(item , Ntime , Nage , Nweight , Ntypes){
             }
         }
         else{
-        }
+        }   
     })
+
+  
+    
+    /*
+    ArrayCache.forEach((datas,key)=>{
+        var typess = ArrayTypes[key];
+        outitem.innerHTML += '<div class="item" id="item1"> <div class="item-head"> <div class="item-head-image"> <img src="images/'+datas.img+'.jpg" alt="'+datas.img+'"> </div> <div class="item-head-filter"> <div class="numberplayer"> <p title="'+datas.playermin+' - '+datas.playermax+'" ><i class="fas fa-users"></i> '+datas.playermin+' - '+datas.playermax+'</p> </div> <div class="timeplay"> <p title="'+datas.times+'m" ><i class="fas fa-stopwatch"></i> '+datas.times+'m</p> </div> <div class="ageplay"> <p title="'+datas.ages+'+" ><i class="fas fa-users-cog"></i> '+datas.ages+'+</p> </div> <div class="weightplay"> <p title="'+datas.weight+'/5" ><i class="fas fa-weight"></i> '+datas.weight+'/5</p> </div> </div> <div class="item-head-type"> <div>'+ typess+'</div> </div> </div> <div class="item-bottom"> <p title="'+datas.des+'">'+datas.des+'</p></div> </div>'
+        
+    })*/
+    ResetNumber();
+    loadPage(ArrayCache,ArrayTypes);
+
 }
 /////////////////*TRUYEN THAM SO VAO FUNCTION FILTER CHANGE*////////
 function nfilter_search(){
@@ -301,7 +340,7 @@ function nfilter_search(){
     if(intNumPlayer == "" ){
         intNumPlayer = 0 ;
     }
-    console.log(intNumPlayer.value);
+    //console.log(intNumPlayer.value);
     var intTime = document.getElementById("ntime");
     //console.log(intTime.value);
     var intAge = document.getElementById("nage");
@@ -313,7 +352,9 @@ function nfilter_search(){
 
     var takeCategory = document.getElementById("ncategory");
     var intputs = takeCategory.querySelectorAll("input");
-    //console.log(intputs);
+    //console.log(intputs)
+
+
     intputs.forEach(item =>{
         if(item.checked){
             listCategory.push(item.value);
@@ -435,5 +476,8 @@ switch_type.addEventListener("click",()=>{
         nfilter_search();
     }
 })
+
+
+
 
 
