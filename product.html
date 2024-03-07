@@ -6,11 +6,9 @@
         <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
         <meta name="description" content="đây là phiên bản v1.0">
         <link rel="icon" href="https://i.ytimg.com/vi/TQV00GtB5Rk/maxresdefault.jpg">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/produce.css">
-        <link rel="stylesheet" href="css/fix.css">
-
-
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/produce.css">
+    
         <title>Boardgame</title>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
@@ -158,6 +156,7 @@
                 </div>
                 <div class="cbs-search">
                     <button id="reset_filter">Reset filter</button>
+                   
                 </div>
             </div>
 
@@ -175,121 +174,36 @@
                         </div>
                     </div>
                     <div class="Pagenumber">
-
+                        <div>
+                            <button class="Previous_button" id="Previous_button">Previous</button>
+                            <span id="CurrentPage"></span><span>/</span><span id="EndPage"></span>
+                            <button class="Next_button" id="Next_button">Next</button>
+                        </div>
+                        
                     </div>
                 </div>
 
                 <!-- body product -->
                 <div class="cbp-body" id="cbp-body">
-                    <!---items -->
-
-                    <!--
-                    <div class="item" id="item1">
-                        <div class="item-head">
-                            <div class="ih-image">
-                                <img src="https://m.media-amazon.com/images/I/41Jf7QPG6kL._AC_.jpg" alt="demo">
-                            </div>
-                            <div class="ih-infor">
-                                <div class="ih-infor-name">
-                                    <p title="Terraforming Mars">Terraforming Mars</p>
-                                </div>
-                                <div class="ih-infor-filter">
-                                    <div class="ih-infor-filter-All">
-                                        <div class="ih-player">
-                                        <p title="Player: 2 - 5">Player: 2 - 5</p>
-                                        </div>
-                                        <div class="ih-time">
-                                        <p>Time: 45m</p>   
-                                        </div>
-                                        <div class="ih-age">
-                                        <p>Age: 16+</p>   
-                                        </div>
-                                        <div class="ih-weight">
-                                        <p>weight: 3.5/5</p>   
-                                        </div>
-                                    </div>
-                                    <div class="ih-infor-filter-type">
-                                        <div><p>card game</p>
-                                            <p>card game</p>
-                                            <p>card game</p>
-                                            <p>card game</p>
-                                            <p>card game</p>
-                                            <p>card game</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-bottom">
-                            <div class="ib-shortdes">
-                                <p title="In the 2400s, mankind begins to terraform the planet Mars. Giant corporations, sponsored by the World Government on Earth, 
-                                initiate huge projects to raise the temperature, the oxygen level, and the ocean coverage until the environment is habitable. In Terraforming Mars, you play one of those 
-                                corporations and work together in the terraforming process, but compete for getting victory points that are awarded not only for your contribution to the terraforming, 
-                                but also for advancing human infrastructure throughout the solar system, and doing other commendable things.">In the 2400s, mankind begins to terraform the planet Mars. Giant corporations, sponsored by the World Government on Earth, 
-                                initiate huge projects to raise the temperature, the oxygen level, and the ocean coverage until the environment is habitable. In Terraforming Mars, you play one of those 
-                                corporations and work together in the terraforming process, but compete for getting victory points that are awarded not only for your contribution to the terraforming, 
-                                but also for advancing human infrastructure throughout the solar system, and doing other commendable things.
-                                </p>
-                            </div>
-                            <div class="ib-viewnumber">
-                               
-                            </div>
-                        </div>
-                    </div>
-                   <div  class="item" id="item1">
-                        <div class="item-head">
-                            <div class="item-head-image">
-                                <img src="images/terraforming mar.jpg" alt="terraforming mar">
-                            </div>
-                            <div class="item-head-filter">
-                                <div class="numberplayer">
-                                    <p title="2 - 5" ><i class="fas fa-users"></i> 2 - 5</p>
-                                </div>
-                                <div class="timeplay">
-                                    <p title="45m" ><i class="fas fa-stopwatch"></i> 45m</p>   
-                                </div>
-                                <div class="ageplay">
-                                    <p title="16+" ><i class="fas fa-users-cog"></i> 16+</p>  
-                                </div>
-                                <div class="weightplay">
-                                    <p title="3.5/5" ><i class="fas fa-weight"></i> 3.5/5</p>   
-                                </div>
-                            </div>
-                            <div class="item-head-type">
-                                <div><p>card game</p>
-                                    <p>card game</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-bottom">
-                            <p title="In the 2400s, mankind begins to terraform the planet Mars. Giant corporations, sponsored by the World Government on Earth, 
-                            initiate huge projects to raise the temperature, the oxygen level, and the ocean coverage until the environment is habitable. In Terraforming Mars, you play one of those 
-                            corporations and work together in the terraforming process, but compete for getting victory points that are awarded not only for your contribution to the terraforming, 
-                            but also for advancing human infrastructure throughout the solar system, and doing other commendable things.">In the 2400s, mankind begins to terraform the planet Mars. Giant corporations, sponsored by the World Government on Earth, 
-                            initiate huge projects to raise the temperature, the oxygen level, and the ocean coverage until the environment is habitable. In Terraforming Mars, you play one of those 
-                            corporations and work together in the terraforming process, but compete for getting victory points that are awarded not only for your contribution to the terraforming, 
-                            but also for advancing human infrastructure throughout the solar system, and doing other commendable things.">In the 2400s, mankind begins to terraform the planet Mars. Giant corporations, sponsored by the World Government on Earth, 
-                                initiate huge projects to raise the temperature, the oxygen level, and the ocean coverage until the environment is habitable. In Terraforming Mars, you play one of those 
-                                corporations and work together in the terraforming process, but compete for getting victory points that are awarded not only for your contribution to the terraforming, 
-                                but also for advancing human infrastructure throughout the solar system, and doing other commendable things.">In the 2400s, mankind begins to terraform the planet Mars. Giant corporations, sponsored by the World Government on Earth, 
-                                initiate huge projects to raise the temperature, the oxygen level, and the ocean coverage until the environment is habitable. In Terraforming Mars, you play one of those 
-                                corporations and work together in the terraforming process, but compete for getting victory points that are awarded not only for your contribution to the terraforming, 
-                                but also for advancing human infrastructure throughout the solar system, and doing other commendable things.</p>
-                        </div>
-                   </div>-->
+                 
                    
                 </div>
             </div>
 
 
         </div>
-       
+        <script src="js/PageNumber.js" type="module"> </script>
+        <script src="js/tool.js" type="module"> </script>
+        
+
+
     </body>
     <footer>
 
     </footer>
 
-    <script src="js/tool.js" type="module"> </script>
+   
+   
 
     <script>
         function updateValue(value) {
